@@ -1,0 +1,108 @@
+  - platform: template
+    sensors: 
+      therm_temperature:
+        value_template: '{{ state_attr("climate.family_room_thermostat", "current_temperature") }}'  
+        friendly_name: 'Nest Thermostat Temperature'
+        unit_of_measurement: '°C'
+        device_class: temperature
+      therm_humidity:
+        value_template: '{{ state_attr("climate.family_room_thermostat", "current_humidity") }}'
+        unit_of_measurement: '%'
+        friendly_name: 'Nest Thermostat Humidity'
+        device_class: humidity
+        
+      therm_hvac_action:
+        value_template: '{{ state_attr("climate.family_room_thermostat", "hvac_action") }}'   
+        friendly_name: 'Nest Thermostat verwarming Status'
+
+      therm_temperature_set: 
+        value_template: '{{ state_attr("climate.family_room_thermostat", "temperature") }}'   
+        friendly_name: 'Nest Thermostat temperatuur ingesteld'
+        unit_of_measurement: '°C'
+        device_class: temperature
+
+      therm_mode_temperature_set: 
+        value_template: '{{ state_attr("climate.family_room_thermostat", "preset_mode") }}'   
+        friendly_name: 'Nest Thermostat instelling'
+        
+#Stromer sensors
+  - platform: template
+    sensors:      
+      stromer_battery:
+        friendly_name: Stromer accu niveau
+        device_class: battery
+        unit_of_measurement: '%'
+        value_template: "{{ states('sensor.stromer_battery_chargelevel') }}"
+        
+      stromer_current_speed:
+        friendly_name: Stromer Speed
+        unit_of_measurement: km/h
+        value_template: "{{ states('sensor.stromer_current_speed') }}"
+        icon_template: mdi:bike-fast
+        
+      stromer_avg_speed:
+        friendly_name: Stromer gemiddelde snelheid
+        unit_of_measurement: km/h
+        value_template: "{{ states('sensor.stromer_avg_speed') }}"
+        icon_template: mdi:speedometer
+      
+      stromer_energy_consumption_total:
+        friendly_name: Stromer energieverbruik totaal
+        device_class: power
+        unit_of_measurement: 'kw'
+        value_template: "{{(states('sensor.stromer_totalenergyconsumption')| float / 1000) | round(2)}}" 
+        icon_template: mdi:battery
+       
+      stromer_km_total: 
+         friendly_name: Stromer afgelegde km
+         icon_template: mdi:speedometer
+         value_template: "{{ states('sensor.stromer_total_distance') }}"
+         unit_of_measurement: 'km'
+         
+      stromer_sw_version: 
+         friendly_name: Stromer software versie
+         value_template: "{{ states('sensor.stromer_softwareversion') }}"
+         icon_template: mdi:wrench
+
+      stromer_lock_state:
+        friendly_name: Stromer op slot
+        value_template: "{{ states('sensor.stromer_lockstate') }}"
+        icon_template: >
+          {% if is_state('sensor.stromer_lockstate', 'False') %}
+            mdi:lock-open
+          {% elif is_state('sensor.stromer_lockstate', 'True') %}
+            mdi:lock
+          {% else %}
+            mdi:lock-alert
+          {% endif %} 
+     
+      stromer_battery_temperatuur:
+        friendly_name: Stromer batterij Temperatuur
+        unit_of_measurement: '°C'
+        value_template: "{{ states('sensor.stromer_batterytemp') }}"
+        icon_template: mdi:thermometer
+        
+      stromer_battery_health:
+        friendly_name: Stromer gezondheid accu 
+        device_class: battery
+        unit_of_measurement: '%'
+        value_template: "{{ states('sensor.stromer_battery_healthstate') }}"    
+      
+      stromer_motor_temp:
+        friendly_name: Stromer motor Temperatuur
+        unit_of_measurement: '°C'
+        value_template: "{{ states('sensor.stromer_motortemp') }}"
+        icon_template: mdi:thermometer
+      
+      stromer_trip_tijd:
+        friendly_name: Stromer totale trip tijd
+        unit_of_measurement: 'h'
+        value_template: "{{(states('sensor.stromer_triptime')| float / 60) | round(2)}}"
+        icon_template: mdi:clock 
+    
+      stromer_totaal_tijd:
+        friendly_name: Stromer totale reistijd
+        unit_of_measurement: 'h'
+        value_template: "{{(states('sensor.stromer_totaltime')| float / 60) | round(2) }}"
+        icon_template: mdi:clock 
+ 

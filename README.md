@@ -13,4 +13,4 @@ sensor.yaml, add this to your sensor.yaml. see how to create a sensor.yaml as sp
 
 Add the sensors to your dashboard:
 
-![stromersensor.JPG](https://github.com/jmnieuwhoff/homeassistant/blob/master/stromersensor.JPG)
+![](https://repository-images.githubusercontent.com/236567711/8775ce80-41cc-11ea-9b03-74208e961f84&quot)

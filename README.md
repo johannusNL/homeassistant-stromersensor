@@ -1,5 +1,7 @@
 # homeassistant
 # credits to https://github.com/wpeterw/stromer_slack_status
+please take a look at this project for a nice new integration: https://github.com/CoMPaTech/stromer
+
 stromer.py can be innitiated with appdeamon. see https://www.home-assistant.io/docs/ecosystem/appdaemon/
 Don't forget to add your login details and api secrets in the python script.
 password = "PASSWORD-Here"

@@ -7,7 +7,7 @@ Don't forget to add your login details and api secrets in the python script.
 password = "PASSWORD-Here"
 username = "username@email.com"
 client_id = "Clientid-here"
-client_secret = "Secret-here"
+client_secret = "Secret-here" (absolute since api version 4)
 
 The client_id and client_secret can be 'sniffed' with tools like MitM proxy.
 

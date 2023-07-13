@@ -53,7 +53,7 @@ class stromer(hass.Hass):
             
             def get_access_token(client_id, client_secret, code):
                 url = "https://api3.stromer-portal.ch//o/token/"
-                params = {
+                data = {
                     "grant_type": "authorization_code",
                     "client_id": client_id,
                     "client_secret": client_secret,
@@ -61,7 +61,7 @@ class stromer(hass.Hass):
                     "redirect_uri": "stromerauth://auth",
                 }
             
-                res = requests.post(url, params=params)
+                res = requests.post(url, data=data)
                 return res.json()["access_token"]
             
             
